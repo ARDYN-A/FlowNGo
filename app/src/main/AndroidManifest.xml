@@ -10,7 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FlowNGo">
         <activity android:name=".Ingredients"></activity>
-        <activity android:name=".ListItem" />
+        <activity android:name=".Servings" />
+        <activity android:name=".Confirmed" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
