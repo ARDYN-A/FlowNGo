@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -40,6 +41,18 @@ class MainActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener{
     override fun onItemClick(position: Int) {
         val clickedItem = drinkList[position]
         pos = position
+        if(drinkList[position].details == "Selected") {
+            if(position == 0)
+                drinkList[position].details = "A college classic."
+            if(position == 1)
+                drinkList[position].details = "Best served with tacos."
+            if(position == 2)
+                drinkList[position].details = "A classic drink for those who love quinine."
+            if(position == 3)
+                drinkList[position].details = "Don't ask me what it is man."
+        } else {
+            drinkList[position].details = "Selected"
+        }
         dAdapter.notifyItemChanged(position)
     }
 
