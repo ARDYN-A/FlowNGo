@@ -47,17 +47,17 @@ class Ingredients : AppCompatActivity(), ItemsAdapter.OnItemClickListener{
     private fun generateIngredientList(){
         ingredientList.clear()
         if(pos == 0){
-            ingredientList.add(Item(R.drawable.ic_drink_mystery, "Vodka", "Drunk for cheap."))
-            ingredientList.add(Item(R.drawable.ic_drink_mystery, "Orange Juice", "Who doesn't love it?"))
+            ingredientList.add(Item(R.drawable.ic_ingredient_alcohol, "Vodka", "Drunk for cheap."))
+            ingredientList.add(Item(R.drawable.ic_ingredient_citrus, "Orange Juice", "Who doesn't love it?"))
         }
         else if(pos == 1){
-            ingredientList.add(Item(R.drawable.ic_drink_mystery, "Tequila", "Your pants may fall off."))
-            ingredientList.add(Item(R.drawable.ic_drink_mystery, "Triple Sec", "Alcoholic sugar water."))
-            ingredientList.add(Item(R.drawable.ic_drink_mystery, "Lime Juice", "Boy is it sour."))
+            ingredientList.add(Item(R.drawable.ic_ingredient_alcohol, "Tequila", "Your pants may fall off."))
+            ingredientList.add(Item(R.drawable.ic_ingredient_drink, "Triple Sec", "Alcoholic sugar water."))
+            ingredientList.add(Item(R.drawable.ic_ingredient_citrus, "Lime Juice", "Boy is it sour."))
         }
         else if(pos == 2){
-            ingredientList.add(Item(R.drawable.ic_drink_mystery, "Gin", "Imagine making alcohol with a poisonous berry."))
-            ingredientList.add(Item(R.drawable.ic_drink_mystery, "Tonic Water", "Mmm... quinine."))
+            ingredientList.add(Item(R.drawable.ic_ingredient_alcohol, "Gin", "Imagine making alcohol with a poisonous berry."))
+            ingredientList.add(Item(R.drawable.ic_ingredient_drink, "Tonic Water", "Mmm... quinine."))
         }
         else{
             ingredientList.add(Item(R.drawable.ic_drink_mystery, "Mystery Ingredient", "Spooky"))
