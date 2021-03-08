@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -47,46 +48,31 @@ class Ingredients : AppCompatActivity(), ItemsAdapter.OnItemClickListener{
 
     override fun onItemClick(position: Int) {
         val clickedItem = ingredientList[position]
-        //pos = position
-        if(ingredientList[position].details == "Unselected") {
-            if(position == 0) {
-                ingredientList[position].details = "Drunk for cheap."
-                ingredientList[position].details = "Who doesn't love it?"
-            }
-            if(position == 1) {
-                ingredientList[position].details = "Your pants may fall off."
-                ingredientList[position].details = "Alcoholic sugar water."
-                ingredientList[position].details = "Boy is it sour."
-            }
-            if(position == 2) {
-                ingredientList[position].details = "Imagine making alcohol with a poisonous berry."
-                ingredientList[position].details = "Mmm... quinine."
-            }
-            if(position == 3)
-                ingredientList[position].details = "Don't ask me what it is man."
-        } else {
-            ingredientList[position].details = "Unselected"
+        for(item in ingredientList){
+            item.selected = View.INVISIBLE
         }
-        iAdapter.notifyItemChanged(position)
+        pos = position
+        clickedItem.selected = View.VISIBLE
+        iAdapter.notifyDataSetChanged()
     }
 
     private fun generateIngredientList(){
         ingredientList.clear()
         if(pos == 0){
-            ingredientList.add(Item(R.drawable.ic_ingredient_alcohol, "Vodka", "Drunk for cheap."))
-            ingredientList.add(Item(R.drawable.ic_ingredient_citrus, "Orange Juice", "Who doesn't love it?"))
+            ingredientList.add(Item(R.drawable.ic_ingredient_alcohol, "Vodka", "Drunk for cheap.", View.INVISIBLE))
+            ingredientList.add(Item(R.drawable.ic_ingredient_citrus, "Orange Juice", "Who doesn't love it?", View.INVISIBLE))
         }
         else if(pos == 1){
-            ingredientList.add(Item(R.drawable.ic_ingredient_alcohol, "Tequila", "Your pants may fall off."))
-            ingredientList.add(Item(R.drawable.ic_ingredient_alcohol, "Triple Sec", "Alcoholic sugar water."))
-            ingredientList.add(Item(R.drawable.ic_ingredient_citrus, "Lime Juice", "Boy is it sour."))
+            ingredientList.add(Item(R.drawable.ic_ingredient_alcohol, "Tequila", "Your pants may fall off.", View.INVISIBLE))
+            ingredientList.add(Item(R.drawable.ic_ingredient_alcohol, "Triple Sec", "Alcoholic sugar water.", View.INVISIBLE))
+            ingredientList.add(Item(R.drawable.ic_ingredient_citrus, "Lime Juice", "Boy is it sour.", View.INVISIBLE))
         }
         else if(pos == 2){
-            ingredientList.add(Item(R.drawable.ic_ingredient_alcohol, "Gin", "Imagine making alcohol with a poisonous berry."))
-            ingredientList.add(Item(R.drawable.ic_ingredient_alcohol, "Tonic Water", "Mmm... quinine."))
+            ingredientList.add(Item(R.drawable.ic_ingredient_alcohol, "Gin", "Imagine making alcohol with a poisonous berry.", View.INVISIBLE))
+            ingredientList.add(Item(R.drawable.ic_ingredient_alcohol, "Tonic Water", "Mmm... quinine.", View.INVISIBLE))
         }
         else{
-            ingredientList.add(Item(R.drawable.ic_drink_mystery, "Mystery Ingredient", "Spooky"))
+            ingredientList.add(Item(R.drawable.ic_drink_mystery, "Mystery Ingredient", "Spooky", View.INVISIBLE))
         }
 
     }

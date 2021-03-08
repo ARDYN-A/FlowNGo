@@ -1,5 +1,6 @@
 package com.example.flowngo
 
+import android.util.Log
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -23,6 +24,7 @@ class ItemsAdapter(
         holder.imageView.setImageResource(item.imageResource)
         holder.nameView.text = item.name
         holder.descView.text = item.details
+        holder.checkView.visibility =  item.selected
     }
 
     override fun getItemCount(): Int = values.size
@@ -32,6 +34,7 @@ class ItemsAdapter(
         val imageView: ImageView = view.findViewById(R.id.image_view)
         val nameView: TextView = view.findViewById(R.id.name)
         val descView: TextView = view.findViewById(R.id.desc)
+        val checkView: ImageView = view.findViewById(R.id.checkbox)
 
         init{
             view.setOnClickListener(this)
