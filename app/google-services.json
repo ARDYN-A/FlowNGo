@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "467284666295",
+    "firebase_url": "https://flowngo-293ee-default-rtdb.firebaseio.com",
+    "project_id": "flowngo-293ee",
+    "storage_bucket": "flowngo-293ee.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:467284666295:android:a9b900aa40c9768965ea32",
+        "android_client_info": {
+          "package_name": "com.example.flowngo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "467284666295-rop5r3metslj5tcnttju1ji097nf61vh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC5228GsCqdst6v9ceCOcAKdT9utq4grGE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "467284666295-rop5r3metslj5tcnttju1ji097nf61vh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

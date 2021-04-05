@@ -14,7 +14,7 @@
         android:layout_marginTop="264dp"
         android:ellipsize="start"
         android:gravity="center_horizontal"
-        android:text="Please select number of servings"
+        android:text="Enter desired amount in mL (50 is about one shot)"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -28,7 +28,7 @@
         android:ellipsize="start"
         android:ems="10"
         android:gravity="center_horizontal"
-        android:hint="1"
+        android:hint="1.5"
         android:inputType="number"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -43,18 +43,9 @@
         android:layout_marginTop="40dp"
         android:background="#FFFFFF"
         android:text="BACK"
-        app:layout_constraintEnd_toStartOf="@+id/nextbutton"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/numServings" />
-
-    <Button
-        android:id="@+id/nextbutton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#FFFFFF"
-        android:text="ok"
-        app:layout_constraintBaseline_toBaselineOf="@+id/backbutton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/backbutton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

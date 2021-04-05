@@ -8,12 +8,17 @@ import android.view.View
 import android.widget.Button
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import java.lang.NullPointerException
 
-private const val key = "POSITION"
+private const val key1 = "DRINK_CHOICE"
+private const val key2 = "SELECTED_INGREDIENT"
+private const val key3 = "SERVINGS"
 
 class Ingredients : AppCompatActivity(), ItemsAdapter.OnItemClickListener{
 
-    private var pos = -1
+    private var drinkChoice = -1
+    private var selectedIngredient = -1
+    private var drinkOrder: DoubleArray = DoubleArray(10)
     private var ingredientList: MutableList<Item> = mutableListOf<Item>()
     private var iAdapter = ItemsAdapter(ingredientList, this)
 
@@ -27,7 +32,10 @@ class Ingredients : AppCompatActivity(), ItemsAdapter.OnItemClickListener{
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.setHasFixedSize(true)
 
-        pos = intent.getIntExtra(key, -1)
+        drinkChoice = intent.getIntExtra(key1, -1)
+        if(intent.getDoubleArrayExtra(key3) != null) {
+            drinkOrder = intent.getDoubleArrayExtra(key3) as DoubleArray
+        }
         generateIngredientList()
 
         iAdapter.notifyDataSetChanged()
@@ -35,45 +43,72 @@ class Ingredients : AppCompatActivity(), ItemsAdapter.OnItemClickListener{
         val nextButton = findViewById<Button>(R.id.nextbutton)
         val backButton = findViewById<Button>(R.id.backbutton)
         nextButton.setOnClickListener {
-            val intent = Intent( this, Servings::class.java)
-            intent.putExtra(key, pos)
-            startActivity( intent )
+            val intent = Intent( this, Confirmed::class.java)
+            intent.putExtra(key3, drinkOrder)
+            startActivity(intent)
         }
         backButton.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
-            intent.putExtra(key, pos)
+            intent.putExtra(key1, drinkChoice)
             startActivity(intent)
         }
     }
 
     override fun onItemClick(position: Int) {
         val clickedItem = ingredientList[position]
-        for(item in ingredientList){
-            item.selected = View.INVISIBLE
+        selectedIngredient = position
+        if(clickedItem.selected == View.INVISIBLE){
+            val intent = Intent(this, Servings::class.java)
+            intent.putExtra(key2, selectedIngredient)
+            intent.putExtra(key3, drinkOrder)
+            startActivity(intent)
         }
-        pos = position
-        clickedItem.selected = View.VISIBLE
+        else{
+            clickedItem.selected = View.INVISIBLE
+            drinkOrder[position] = 0.0
+        }
         iAdapter.notifyDataSetChanged()
     }
 
     private fun generateIngredientList(){
         ingredientList.clear()
-        if(pos == 0){
-            ingredientList.add(Item(R.drawable.ic_ingredient_alcohol, "Vodka", "Drunk for cheap.", View.INVISIBLE))
-            ingredientList.add(Item(R.drawable.ic_ingredient_citrus, "Orange Juice", "Who doesn't love it?", View.INVISIBLE))
+        ingredientList.add(Item(R.drawable.ic_ingredient_alcohol, "Vodka", "Drunk for cheap.", View.INVISIBLE))
+        ingredientList.add(Item(R.drawable.ic_ingredient_alcohol, "Tequila", "Your pants may fall off.", View.INVISIBLE))
+        ingredientList.add(Item(R.drawable.ic_ingredient_alcohol, "Gin", "Imagine making alcohol with a poisonous berry.", View.INVISIBLE))
+        ingredientList.add(Item(R.drawable.ic_ingredient_alcohol, "Whiskey", "WhiskAYYYYYY!", View.INVISIBLE))
+        ingredientList.add(Item(R.drawable.ic_ingredient_alcohol, "Rum", "Sparrow's favorite.", View.INVISIBLE))
+        ingredientList.add(Item(R.drawable.ic_ingredient_citrus, "Orange Juice", "Who doesn't love it?", View.INVISIBLE))
+        ingredientList.add(Item(R.drawable.ic_ingredient_alcohol, "Triple Sec", "Alcoholic sugar water.", View.INVISIBLE))
+        ingredientList.add(Item(R.drawable.ic_ingredient_citrus, "Lime Juice", "Boy is it sour.", View.INVISIBLE))
+        ingredientList.add(Item(R.drawable.ic_ingredient_alcohol, "Tonic Water", "Mmm... quinine.", View.INVISIBLE))
+        ingredientList.add(Item(R.drawable.ic_ingredient_alcohol, "Coca Cola", "Polar bears say its great.", View.INVISIBLE))
+        when (drinkChoice) {
+            1 -> {
+                drinkOrder[0] = 50.0
+                drinkOrder[5] = 150.0
+            }
+            2 -> {
+                drinkOrder[1] = 50.0
+                drinkOrder[6] = 50.0
+                drinkOrder[7] = 50.0
+            }
+            3 -> {
+                drinkOrder[2] = 50.0
+                drinkOrder[8] = 150.0
+            }
+            4 -> {
+                drinkOrder[3] = 50.0
+                drinkOrder[9] = 150.0
+            }
+            5 -> {
+                drinkOrder[4] = 50.0
+                drinkOrder[9] = 150.0
+            }
         }
-        else if(pos == 1){
-            ingredientList.add(Item(R.drawable.ic_ingredient_alcohol, "Tequila", "Your pants may fall off.", View.INVISIBLE))
-            ingredientList.add(Item(R.drawable.ic_ingredient_alcohol, "Triple Sec", "Alcoholic sugar water.", View.INVISIBLE))
-            ingredientList.add(Item(R.drawable.ic_ingredient_citrus, "Lime Juice", "Boy is it sour.", View.INVISIBLE))
+        for(i in 0 until 10){
+            if(drinkOrder[i] != 0.0){
+                ingredientList[i].selected = View.VISIBLE
+            }
         }
-        else if(pos == 2){
-            ingredientList.add(Item(R.drawable.ic_ingredient_alcohol, "Gin", "Imagine making alcohol with a poisonous berry.", View.INVISIBLE))
-            ingredientList.add(Item(R.drawable.ic_ingredient_alcohol, "Tonic Water", "Mmm... quinine.", View.INVISIBLE))
-        }
-        else{
-            ingredientList.add(Item(R.drawable.ic_drink_mystery, "Mystery Ingredient", "Spooky", View.INVISIBLE))
-        }
-
     }
 }

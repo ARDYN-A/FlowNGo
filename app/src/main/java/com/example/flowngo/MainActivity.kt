@@ -9,13 +9,13 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-private const val key = "POSITION"
+private const val key1 = "DRINK_CHOICE"
 
 class MainActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener{
 
     private val drinkList: MutableList<Item> = mutableListOf<Item>()
     private val dAdapter = ItemsAdapter(drinkList, this)
-    private var pos: Int = -1
+    private var drinkChoice: Int = -1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,14 +27,15 @@ class MainActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener{
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.setHasFixedSize(true)
 
-        generateDrinkList(3)
+        drinkChoice = intent.getIntExtra(key1, -1)
+        generateDrinkList(6)
         dAdapter.notifyDataSetChanged()
 
         val nextButton = findViewById<Button>(R.id.nextbutton)
 
         nextButton.setOnClickListener {
             val intent = Intent( this , Ingredients::class.java)
-            intent.putExtra(key, pos)
+            intent.putExtra(key1, drinkChoice)
             startActivity( intent )
         }
     }
@@ -44,7 +45,7 @@ class MainActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener{
         for(item in drinkList){
             item.selected = View.INVISIBLE
         }
-        pos = position
+        drinkChoice = position
         clickedItem.selected = View.VISIBLE
         dAdapter.notifyDataSetChanged()
     }
@@ -54,21 +55,30 @@ class MainActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener{
         drinkList.clear()
         for(i in 0 until size){
             val drawable = when (i){
-                0       ->  R.drawable.ic_drink_screwdriver
-                1       ->  R.drawable.ic_drink_margarita
-                2       ->  R.drawable.ic_drink_gandt
+                0       ->  R.drawable.ic_drink_mystery
+                1       ->  R.drawable.ic_drink_screwdriver
+                2       ->  R.drawable.ic_drink_margarita
+                3       ->  R.drawable.ic_drink_gandt
+                4       ->  R.drawable.ic_ingredient_alcohol
+                5       ->  R.drawable.ic_ingredient_alcohol
                 else    ->  R.drawable.ic_drink_mystery
             }
             val drinkName = when (i){
-                0       ->  "Screwdriver"
-                1       ->  "Margarita"
-                2       ->  "Gin and Tonic"
+                0       ->  "Custom Drink"
+                1       ->  "Screwdriver"
+                2       ->  "Margarita"
+                3       ->  "Gin and Tonic"
+                4       ->  "Whiskey and Coke"
+                5       ->  "Rum and Coke"
                 else    ->  "Mystery Juice"
             }
             val drinkDesc = when (i){
-                0       ->  "A college classic."
-                1       ->  "Best served with tacos."
-                2       ->  "A classic drink for those who love quinine."
+                0       ->  "Choose among the finest ingredients!"
+                1       ->  "A college classic."
+                2       ->  "Best served with tacos."
+                3       ->  "A classic drink for those who love quinine."
+                4       ->  "Read the drink name again."
+                5       ->  "Cousin to the Whiskey and Coke."
                 else    ->  "Don't ask me what it is man."
             }
             val item = Item(drawable, drinkName, drinkDesc, View.INVISIBLE)
