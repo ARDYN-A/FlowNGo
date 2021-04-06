@@ -3,16 +3,21 @@ package com.example.flowngo
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Button
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import java.lang.NullPointerException
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 
 private const val key1 = "DRINK_CHOICE"
 private const val key2 = "SELECTED_INGREDIENT"
 private const val key3 = "SERVINGS"
+private const val key4 = "COUNT"
 
 class Ingredients : AppCompatActivity(), ItemsAdapter.OnItemClickListener{
 
@@ -21,10 +26,29 @@ class Ingredients : AppCompatActivity(), ItemsAdapter.OnItemClickListener{
     private var drinkOrder: DoubleArray = DoubleArray(10)
     private var ingredientList: MutableList<Item> = mutableListOf<Item>()
     private var iAdapter = ItemsAdapter(ingredientList, this)
+    private val db = Firebase.database
+    private lateinit var countListener: ValueEventListener
+    private var count: Long = 0
+
+    private fun listenForCountValueChanges(){
+        countListener = object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                count = dataSnapshot.value as Long
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Getting Post failed, log a message
+                Toast.makeText(applicationContext, "Firebase read cancelled.", Toast.LENGTH_SHORT).show()
+            }
+        }
+        db.getReference("Count").addValueEventListener(countListener)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ingredients)
+
+        listenForCountValueChanges()
 
         val recyclerView = findViewById<RecyclerView>(R.id.recycler_view)
 
@@ -45,6 +69,7 @@ class Ingredients : AppCompatActivity(), ItemsAdapter.OnItemClickListener{
         nextButton.setOnClickListener {
             val intent = Intent( this, Confirmed::class.java)
             intent.putExtra(key3, drinkOrder)
+            intent.putExtra(key4, count)
             startActivity(intent)
         }
         backButton.setOnClickListener {

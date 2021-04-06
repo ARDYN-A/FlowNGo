@@ -26,7 +26,6 @@ class Servings : AppCompatActivity(){
         val eText = findViewById<EditText>(R.id.numServings) as EditText
         eText.setText(drinkOrder[selectedIngredient].toString())
 
-        val nextButton = findViewById<Button>(R.id.nextbutton)
         val backButton = findViewById<Button>(R.id.backbutton)
 
         backButton.setOnClickListener {
