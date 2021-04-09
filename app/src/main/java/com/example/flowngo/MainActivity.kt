@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 private const val key1 = "DRINK_CHOICE"
-
 class MainActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener{
 
     private val drinkList: MutableList<Item> = mutableListOf<Item>()
