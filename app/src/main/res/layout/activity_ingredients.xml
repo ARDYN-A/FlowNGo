@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true">
         <Button
-            android:id="@+id/backbutton"
+            android:id="@+id/adminbutton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Back"

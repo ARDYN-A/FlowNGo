@@ -31,11 +31,15 @@ class MainActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener{
         dAdapter.notifyDataSetChanged()
 
         val nextButton = findViewById<Button>(R.id.nextbutton)
-
+        val adminButton = findViewById<Button>(R.id.adminbutton)
         nextButton.setOnClickListener {
             val intent = Intent( this , Ingredients::class.java)
             intent.putExtra(key1, drinkChoice)
             startActivity( intent )
+        }
+        adminButton.setOnClickListener {
+            val intent = Intent(this, AdminLogin::class.java)
+            startActivity(intent)
         }
     }
 

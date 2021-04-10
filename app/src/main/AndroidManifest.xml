@@ -11,6 +11,9 @@
         android:theme="@style/Theme.FlowNGo">
         <activity android:name=".Ingredients" />
         <activity android:name=".Servings" />
+        <activity android:name=".Admin" />
+        <activity android:name=".AdminLogin" />
+        <activity android:name=".dowhateveryouwant" />
         <activity android:name=".Confirmed" />
         <activity android:name=".MainActivity">
             <intent-filter>

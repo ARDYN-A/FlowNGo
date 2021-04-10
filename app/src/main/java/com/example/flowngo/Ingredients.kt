@@ -29,7 +29,6 @@ class Ingredients : AppCompatActivity(), ItemsAdapter.OnItemClickListener{
     private val db = Firebase.database
     private lateinit var countListener: ValueEventListener
     private var count: Long = 0
-
     private fun listenForCountValueChanges(){
         countListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -65,9 +64,9 @@ class Ingredients : AppCompatActivity(), ItemsAdapter.OnItemClickListener{
         iAdapter.notifyDataSetChanged()
 
         val nextButton = findViewById<Button>(R.id.nextbutton)
-        val backButton = findViewById<Button>(R.id.backbutton)
+        val backButton = findViewById<Button>(R.id.adminbutton)
         nextButton.setOnClickListener {
-            val intent = Intent( this, Confirmed::class.java)
+            val intent = Intent( this, dowhateveryouwant::class.java)
             intent.putExtra(key3, drinkOrder)
             intent.putExtra(key4, count)
             startActivity(intent)
