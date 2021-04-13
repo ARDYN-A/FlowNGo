@@ -121,6 +121,8 @@ class dowhateveryouwant : AppCompatActivity() {
         }
         backButton.setOnClickListener {
             val intent = Intent(this, Ingredients::class.java)
+            intent.putExtra(key3, drinkOrder)
+            intent.putExtra(key4, count)
             startActivity(intent)
         }
     }
