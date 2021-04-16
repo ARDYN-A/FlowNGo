@@ -101,32 +101,62 @@ class Ingredients : AppCompatActivity(), ItemsAdapter.OnItemClickListener{
         ingredientList.add(Item(R.drawable.ic_ingredient_alcohol, "Gin", "Imagine making alcohol with a poisonous berry.", View.INVISIBLE))
         ingredientList.add(Item(R.drawable.ic_ingredient_alcohol, "Whiskey", "WhiskAYYYYYY!", View.INVISIBLE))
         ingredientList.add(Item(R.drawable.ic_ingredient_alcohol, "Rum", "Sparrow's favorite.", View.INVISIBLE))
-        ingredientList.add(Item(R.drawable.ic_ingredient_citrus, "Orange Juice", "Who doesn't love it?", View.INVISIBLE))
+        ingredientList.add(Item(R.drawable.ic_ingredient_citrus, "Add your own", "Add something else!", View.INVISIBLE))
         ingredientList.add(Item(R.drawable.ic_ingredient_alcohol, "Triple Sec", "Alcoholic sugar water.", View.INVISIBLE))
         ingredientList.add(Item(R.drawable.ic_ingredient_citrus, "Lime Juice", "Boy is it sour.", View.INVISIBLE))
-        ingredientList.add(Item(R.drawable.ic_ingredient_alcohol, "Tonic Water", "Mmm... quinine.", View.INVISIBLE))
-        ingredientList.add(Item(R.drawable.ic_ingredient_alcohol, "Coca Cola", "Polar bears say its great.", View.INVISIBLE))
+        ingredientList.add(Item(R.drawable.ic_ingredient_citrus, "Orange Juice", "Who doesn't love it?", View.INVISIBLE))
+        ingredientList.add(Item(R.drawable.ic_ingredient_alcohol, "Cranberry Juice", "Dry out your throat.", View.INVISIBLE))
         when (drinkChoice) {
             1 -> {
                 drinkOrder[0] = 50.0
-                drinkOrder[5] = 150.0
-            }
-            2 -> {
-                drinkOrder[1] = 50.0
-                drinkOrder[6] = 50.0
-                drinkOrder[7] = 50.0
-            }
-            3 -> {
-                drinkOrder[2] = 50.0
                 drinkOrder[8] = 150.0
             }
-            4 -> {
-                drinkOrder[3] = 50.0
+            2 -> {
+                drinkOrder[1] = 60.0
+                drinkOrder[6] = 50.0
+                drinkOrder[7] = 40.0
+            }
+            3 -> {
+                drinkOrder[0] = 50.0
                 drinkOrder[9] = 150.0
+            }
+            4 -> {
+                drinkOrder[4] = 50.0
+                drinkOrder[8] = 150.0
             }
             5 -> {
                 drinkOrder[4] = 50.0
-                drinkOrder[9] = 150.0
+                drinkOrder[5] = 150.0
+            }
+            6 -> {
+                drinkOrder[3] = 100.0
+            }
+            7 -> {
+                drinkOrder[0] = 50.0
+                drinkOrder[6] = 30.0
+                drinkOrder[7] = 10.0
+                drinkOrder[9] = 10.0
+            }
+            8 -> {
+                drinkOrder[0] = 30.0
+                drinkOrder[1] = 30.0
+                drinkOrder[2] = 30.0
+                drinkOrder[4] = 30.0
+                drinkOrder[5] = 100.0
+                drinkOrder[6] = 20.0
+            }
+            9 -> {
+                drinkOrder[2] = 75.0
+                drinkOrder[7] = 30.0
+            }
+            10 -> {
+                drinkOrder[2] = 50.0
+                drinkOrder[5] = 100.0
+                drinkOrder[7] = 10.0
+            }
+            11 -> {
+                drinkOrder[3] = 50.0
+                drinkOrder[5] = 150.0
             }
         }
         for(i in 0 until 10){

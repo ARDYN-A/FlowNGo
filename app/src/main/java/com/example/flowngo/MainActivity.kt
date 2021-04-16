@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener{
         recyclerView.setHasFixedSize(true)
 
         drinkChoice = intent.getIntExtra(key1, -1)
-        generateDrinkList(6)
+        generateDrinkList(12)
         dAdapter.notifyDataSetChanged()
 
         val nextButton = findViewById<Button>(R.id.nextbutton)
@@ -65,24 +65,42 @@ class MainActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener{
                 3       ->  R.drawable.ic_drink_gandt
                 4       ->  R.drawable.ic_ingredient_alcohol
                 5       ->  R.drawable.ic_ingredient_alcohol
+                6       ->  R.drawable.ic_ingredient_alcohol
+                7       ->  R.drawable.ic_ingredient_alcohol
+                8       ->  R.drawable.ic_ingredient_alcohol
+                9       ->  R.drawable.ic_ingredient_alcohol
+                10      ->  R.drawable.ic_ingredient_alcohol
+                11      ->  R.drawable.ic_ingredient_alcohol
                 else    ->  R.drawable.ic_drink_mystery
             }
             val drinkName = when (i){
                 0       ->  "Custom Drink"
                 1       ->  "Screwdriver"
                 2       ->  "Margarita"
-                3       ->  "Gin and Tonic"
-                4       ->  "Whiskey and Coke"
-                5       ->  "Rum and Coke"
+                3       ->  "Vodka Cran"
+                4       ->  "Rum Sunset"
+                5       ->  "Malibu Cola"
+                6       ->  "Whiskey"
+                7       ->  "Cosmopolitan"
+                8       ->  "Long Island Iced Tea"
+                9       ->  "Gimlet"
+                10      ->  "Gin and Tonic"
+                11      ->  "Whiskey Coke"
                 else    ->  "Mystery Juice"
             }
             val drinkDesc = when (i){
                 0       ->  "Choose among the finest ingredients!"
                 1       ->  "A college classic."
                 2       ->  "Best served with tacos."
-                3       ->  "A classic drink for those who love quinine."
-                4       ->  "Read the drink name again."
-                5       ->  "Cousin to the Whiskey and Coke."
+                3       ->  "A classic drink."
+                4       ->  "Rum and orange juice!"
+                5       ->  "Rum and coke. Just add coke!"
+                6       ->  "Plain. How it should be."
+                7       ->  "For the ladies"
+                8       ->  "Splash of everything. Just add coke!"
+                9       ->  "Gin and lime"
+                10      ->  "Just add tonic!"
+                11      ->  "Doubt anyone orders this. Just add coke!"
                 else    ->  "Don't ask me what it is man."
             }
             val item = Item(drawable, drinkName, drinkDesc, View.INVISIBLE)
